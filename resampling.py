@@ -29,7 +29,7 @@ class Resample:
 	def sample(self, data_list, sample_size):
 		temp_list = []
 		for i in range(0,sample_size):
-			temp_list.append(data_list[randint(0,sample_size)]) 
+			temp_list.append(data_list[randint(0,len(data_list)-1)]) 
 		return self.sample_mean(temp_list)
 
 	def resample(self, data_list, resample_runs, sample_size):
@@ -38,6 +38,8 @@ class Resample:
 			list_of_means.append(self.sample(data_list,sample_size))
 		resample_mean = self.sample_mean(list_of_means)
 		resample_std_dev = self.sample_std_dev(list_of_means)
+		print("Resample_Mean =", resample_mean)
+		print("Resample_Std_Dev =", resample_std_dev)
 		self.confidence_intervals(resample_mean, resample_std_dev, sample_size, 50)
 		self.confidence_intervals(resample_mean, resample_std_dev, sample_size, 90)
 
